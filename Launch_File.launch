@@ -5,7 +5,7 @@
     <node pkg="package_name" type="node_type" name="node_name" output="screen"/>
                                                 <!-- set different name: name="inst_1" name="inst_2"  -->
     <node pkg="rqt_image_view" type="rqt_image_view" name="camera1" args="/arena_camera_node_1/image_raw"/>
-                                                <!-- topic name  -->
+                                                                    <!-- topic name  -->
 </launch>
 
 
@@ -17,6 +17,47 @@
 <rosparam>           load a set of parameters specified in a YAML file
 <arg>        used to specify varible arguments to the launch file
     
-   dd 
+3. <arg>
+    <arg name="foo" />                              Declares the existence of foo
+    <arg name="foo" default="1" />                  Declares foo with a default value 
+    <arg name="foo" value="bar" />                  Declares foo with constant value.
+    <arg name="foo" doc="description" />            Description of the argument.
+    
+    
+my_file.launch:
+    
+<include file="included.launch">
+  <!-- all vars that included.launch requires must be set -->
+  <arg name="hoge" value="fuga" />
+</include>
+
+included.launch:
+
+<launch>
+  <!-- declare arg to be passed in -->
+  <arg name="hoge" /> 
+  <!-- read value of arg -->
+  <param name="param" value="$(arg hoge)"/>
+</launch>
+    
+  roslaunch my_file.launch hoge:=my_value      (.launch file is available at the current dir)
+  roslaunch %YOUR_ROS_PKG% my_file.launch hoge:=my_value 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
