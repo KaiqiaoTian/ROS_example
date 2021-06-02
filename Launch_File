@@ -1,2 +1,10 @@
 1. Launch Files follow XML syntax
 
+<?xml version="1.0"?>
+<launch>
+    <node pkg="package_name" type="node_type" name="node_name" output="screen"/>
+                                                <!-- set different name: name="inst_1" name="inst_2"  -->
+</launch>
+
+
+2. 
