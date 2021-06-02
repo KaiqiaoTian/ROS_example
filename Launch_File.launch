@@ -7,4 +7,12 @@
 </launch>
 
 
-2. 
+2. Common XML tags in ROS
+
+<node>
+<include>
+<param>    
+<arg>
+<launch>    
+    
+    
