@@ -4,16 +4,18 @@
 <launch>
     <node pkg="package_name" type="node_type" name="node_name" output="screen"/>
                                                 <!-- set different name: name="inst_1" name="inst_2"  -->
+    <node pkg="rqt_image_view" type="rqt_image_view" name="camera1" args="/arena_camera_node_1/image_raw"/>
+                                                <!-- topic name  -->
 </launch>
 
 
 2. Common XML tags in ROS
 
-<node>
-<include>
-<param>    
-<arg>
-<launch>    
+<node>          launches a paticular node
+<include>       to include other launch file
+<param>         sets a particular ROS parameter t oa specific value
+<rosparam>           load a set of parameters specified in a YAML file
+<arg>        used to specify varible arguments to the launch file
     
    dd 
     
