@@ -14,8 +14,9 @@
 <node>          launches a paticular node
 <include>       to include other launch file
 <param>         sets a particular ROS parameter t oa specific value
-<rosparam>           load a set of parameters specified in a YAML file
-<arg>        used to specify varible arguments to the launch file
+<rosparam>      load a set of parameters specified in a YAML file
+<arg>           used to specify varible arguments to the launch file
+<group>         apply setting to a group of nodes, ns attribute lets you push the group of nodes into a separate namespace
     
 3. <arg>
     <arg name="foo" />                              Declares the existence of foo
@@ -43,19 +44,32 @@ included.launch:
   roslaunch my_file.launch hoge:=my_value      (.launch file is available at the current dir)
   roslaunch %YOUR_ROS_PKG% my_file.launch hoge:=my_value 
     
+4. substitution <arg>
+    $(find pkg)       Specifies a package-relative path:                             $(find rospy)/manifest.xml
+    $(arg foo)        evaluates to the value specified by an <arg> tag.              <param name="foo" value="$(arg my_foo)" />
+                        <node name="add_two_ints_server" pkg="beginner_tutorials" type="add_two_ints_server" />
+                        <node name="add_two_ints_client" pkg="beginner_tutorials" type="add_two_ints_client" args="$(arg a) $(arg b)" />
+                        roslaunch beginner_tutorials launch_file.launch a:=1 b:=5
+    
+    $(anon name)      Generates an anonymous id based on name   
+                        <node name="$(anon foo)" pkg="rospy_tutorials" type="talker.py" />
+                        <node name="$(anon foo)" pkg="rospy_tutorials" type="talker.py" />
+    
+    $(eval <expression>)   allows to evaluate arbitrary complex python expressions. 
+                        <param name="circumference" value="$(eval 2.* 3.1415 * arg('radius'))"/>
     
     
     
+5. if and unless
     
+    if=value (optional)         If value evaluates to true, include tag and its contents. 
+
+    unless=value (optional)     Unless value evaluates to true (which means if value evaluates to false), include tag and its contents. 
     
-    
-    
-    
-    
-    
-    
-    
-    
+    <group if="$(arg foo)">
+  <!-- stuff that will only be evaluated if foo is true -->
+    </group>
+    <param name="foo" value="bar" unless="$(arg foo)" />  <!-- This param won't be set when "unless" condition is met --> 
     
     
     
