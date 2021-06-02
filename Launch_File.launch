@@ -73,5 +73,15 @@ included.launch:
     
     
     
+Example:
+    <include file="$(find uhnder_radar_data_visualizer)/launch/visualisation.launch"/>
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find data_collection)/rviz/datacollection_6cams_4radars_det_pc_2d_3d_static_dynamic.rviz" />
+
+    
+    
+    
+    
+    
+    
     
     
