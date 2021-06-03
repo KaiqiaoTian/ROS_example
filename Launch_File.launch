@@ -77,9 +77,17 @@ Example:
     <include file="$(find uhnder_radar_data_visualizer)/launch/visualisation.launch"/>
     <node type="rviz" name="rviz" pkg="rviz" args="-d $(find data_collection)/rviz/datacollection_6cams_4radars_det_pc_2d_3d_static_dynamic.rviz" />
 
+TF tree:
     
+    <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="1 0 0 0 0 0 1 link1_parent link1 100" />
     
+Robot model and robot state publisher:
     
+    <arg name="model" default="$(find data_collection)/urdf/jeep_uhnder.urdf"/>
+    <arg name="rvizconfig" default="$(find data_collection)/rviz/jeep_uhnder.rviz" /> 
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     
     
     
