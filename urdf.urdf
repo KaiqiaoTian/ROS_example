@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+
+
+
+<robot name="jeep">
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+	<box size="0.6 0.3 0.3"/> 
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="front_left_radar">
+    <visual>
+      <geometry>
+          <box size="0.1 0.2 0.2"/> 
+      </geometry>
+      <!-- <origin rpy="0 0 0" xyz="1.386 0.536 1.76"/>-->
+    </visual>
+  </link>
+
+  <link name="front_right_radar">
+    <visual>
+      <geometry>
+        <box size="0.1 0.2 0.2"/> 
+      </geometry>
+     <!--  <origin rpy="0 0 0" xyz="1.386 -0.536 1.76"/>-->
+    </visual>
+  </link>
+
+  <link name="rear_left_radar">
+    <visual>
+      <geometry>
+        <box size="0.1 0.2 0.2"/> 
+      </geometry>
+      <!-- <origin rpy="0 0 0" xyz="-0.026 0.536 1.76"/>-->
+    </visual>
+  </link>
+
+  <link name="rear_right_radar">
+    <visual>
+      <geometry>
+       <box size="0.1 0.2 0.2"/> 
+      </geometry>
+     <!--  <origin rpy="0 0 0" xyz="-0.026 -0.536 1.76"/>-->
+    </visual>
+  </link>
+
+  <link name="front_left_camera">
+    <visual>
+      <geometry>
+          <box size="0.2 0.1 0.1"/> 
+      </geometry>
+      <!-- <origin rpy="0 0 0" xyz="1.386 0.536 1.76"/>-->
+      <material name="blue"/>
+    </visual>
+  </link>
+
+<link name="front_right_camera">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.1"/> 
+      </geometry>
+     <!--  <origin rpy="0 0 0" xyz="1.386 -0.536 1.76"/>-->
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="rear_left_camera">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.1"/>
+      </geometry>
+      <!-- <origin rpy="0 0 0" xyz="-0.026 0.536 1.76"/>-->
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="rear_right_camera">
+    <visual>
+      <geometry>
+       <box size="0.2 0.1 0.1"/> 
+      </geometry>
+     <!--  <origin rpy="0 0 0" xyz="-0.026 -0.536 1.76"/>-->
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_fl_cam" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_camera"/>
+    <origin rpy="1.57 -3.14 1.57" xyz="1.386 0.536 2.0"/>   /////transfor matrix for camera
+  </joint>
+
+<joint name="base_to_fr_cam" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_camera"/>
+    <origin rpy="1.57 -3.14 1.57" xyz="1.386 -0.536 2.0"/>
+  </joint>
+
+  <joint name="base_to_rl_cam" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_camera"/>
+    <origin rpy="1.57 -3.14 1.57" xyz="-0.026 0.536 2.0"/>
+  </joint>
+
+  <joint name="base_to_rr_cam" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_camera"/>
+    <origin rpy="1.57 -3.14 1.57" xyz="-0.026 -0.536 2.0"/>
+  </joint>
+
+  <joint name="base_to_fl" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_radar"/>
+    <origin xyz="1.386 0.536 1.76"/>
+  </joint>
+
+  <joint name="base_to_fr" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_radar"/>
+    <origin xyz="1.386 -0.536 1.76"/>
+  </joint>
+
+  <joint name="base_to_rl" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_radar"/>
+    <origin xyz="-0.026 0.536 1.76"/>
+  </joint>
+
+  <joint name="base_to_rr" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_radar"/>
+    <origin xyz="-0.026 -0.536 1.76"/>
+  </joint>
+
+</robot>
